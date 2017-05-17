@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
 <title>Real-time HTML Editor</title>
 <script type="text/javascript">
@@ -22,9 +23,6 @@ var editboxHTML =
 var defaultStuff = '<h3>Welcome to the real-time HTML editor!<\/h3>\n' +
 '<p>Type HTML in the textarea above, and it will magically appear in the frame below.<\/p>';
 
-// I don't want this stuff to appear in the box at the top because I feel it's likely to be distracting.
-var extraStuff = '<div style="position:absolute; margin:.3em; bottom:0em; right:0em;"><small>\n  Created by <a href="http://www.squarefree.com/" target="_top">Jesse Ruderman<\/a> and hosted by <a href="http://www.dreamhost.com/rewards.cgi?jesseruderman" target="_top">DreamHost<\/a>.\n<\/small><\/div>';
-
 var old = '';
          
 function init()
@@ -44,8 +42,6 @@ function update()
     old = textarea.value;
     d.open();
     d.write(old);
-    if (old.replace(/[\r\n]/g,'') == defaultStuff.replace(/[\r\n]/g,''))
-      d.write(extraStuff);
     d.close();
   }
 
