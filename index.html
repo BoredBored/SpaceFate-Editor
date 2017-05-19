@@ -4,7 +4,7 @@
 	<head>
 		<script>
 			try {
-				function showHint(path, ) {
+				function showHint(path, orderpreference) {
 				if (mode == "dir browse") {
 					var xmlhttp = new XMLHttpRequest();
 					xmlhttp.onreadystatechange = function () {
@@ -12,7 +12,7 @@
 							document.getElementById("txtHint").innerHTML = this.responseText;
 						}
 					};
-					xmlhttp.open("GET", "getdircontents.php?q=" + path + "&" true);
+					xmlhttp.open("GET", "getdircontents.php?q=" + path + "&orderpreference=" + orderpreference, true);
 					xmlhttp.send();}
 				} else if (mode == "editor") {
 					a;
