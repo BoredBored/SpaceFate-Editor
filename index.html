@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<script>
 			try {
+				function showHint(path, ) {
 				if (mode == "dir browse") {
-					;
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function () {
+						if (this.readyState == 4 && this.status == 200) {
+							document.getElementById("txtHint").innerHTML = this.responseText;
+						}
+					};
+					xmlhttp.open("GET", "getdircontents.php?q=" + path + "&" true);
+					xmlhttp.send();}
 				} else if (mode == "editor") {
-					;
+					a;
 				} else if (mode == "visual editor") {
-					;
+					a;
 				} else if (mode == "terminal") {
-					;
+					a;
 				} else {
 					alert("Please select a mode");
 				}
@@ -19,6 +28,8 @@
 			}
 		</script>
 	</head>
+
 	<body id="main">
 	</body>
+
 </html>
