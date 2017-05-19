@@ -2,16 +2,21 @@
 <html>
 	<head>
 		<script>
-			try {if (mode == "dircontents"){
-			} else if (mode == "editor") {
-			} else if (mode == "visual editor") {
-			} else if (mode == "terminal") {
-			} else {
-			//Please select a mode
-			}}catch(err) {
-        alert("Error: " + err);
-    }
-			
+			try {
+				if (mode == "dir browse") {
+					;
+				} else if (mode == "editor") {
+					;
+				} else if (mode == "visual editor") {
+					;
+				} else if (mode == "terminal") {
+					;
+				} else {
+					alert("Please select a mode");
+				}
+			} catch (err) {
+				alert("Error: " + err);
+			}
 		</script>
 	</head>
 	<body>
