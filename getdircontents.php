@@ -33,7 +33,7 @@ else {
 		}
 		else {
 			if (is_dir(DirContentsArray[$x]) == true) {
-				$dircontents = "${$dircontents}<li><div class=\"dir\" onclick=\"openeditor();\"><p>${DirContentsArray[$x]}</p></div></li>";
+				$dircontents = "${$dircontents}<li><div class=\"dir\" onclick=\"getdircontents();\"><p>${DirContentsArray[$x]}</p></div></li>";
 			}
 			else {
 				$dircontents = "${$dircontents}<li><div class=\"file\" onclick=\"openeditor();\"><p>${DirContentsArray[$x]}</p></div></li>";
