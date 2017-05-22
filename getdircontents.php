@@ -1,9 +1,12 @@
 <?php
 $path = $_REQUEST["q"];
 $orderPref = $_REQUEST["orderpreference"];
+if ($orderPref == "") {
+$orderPref = 0;
+}
 
 if ($path != "") {
-	$DirContentsArray = scandir("/var/www/admin${path}");
+	$DirContentsArray = scandir("/var/www/admin${path}", $orderPref);
 	$arrlength = count($DirContentsArray);
 	for ($x = 0; $x < $arrlength; $x++) {
 		if ($DirContentsArray[$x] == ".") {
@@ -21,5 +24,6 @@ if ($path != "") {
 		}
 	}
 	echo $dircontents;
-} else {echo "error";
+} else {
+	echo "error";
        }
