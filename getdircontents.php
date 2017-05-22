@@ -25,5 +25,5 @@ if ($path != "") {
 	}
 	echo $dircontents;
 } else {
-	echo "error";
+	echo "<li>error</li>";
        }
