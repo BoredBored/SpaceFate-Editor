@@ -3,33 +3,21 @@
 
 	<head>
 		<script>
-			try {
-				function showHint(path, orderpreference) {
-				if (mode == "dir browse") {
-					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.onreadystatechange = function () {
-						if (this.readyState == 4 && this.status == 200) {
-							document.getElementById("txtHint").innerHTML = this.responseText;
-						}
-					};
-					xmlhttp.open("GET", "getdircontents.php?q=" + path + "&orderpreference=" + orderpreference, true);
-					xmlhttp.send();}
-				} else if (mode == "editor") {
-					a;
-				} else if (mode == "visual editor") {
-					a;
-				} else if (mode == "terminal") {
-					a;
-				} else {
-					alert("Please select a mode");
-				}
-			} catch (err) {
-				alert("Error: " + err);
-			}
+					function getdircon(path, orderpreference) {
+						var xmlhttp = new XMLHttpRequest();
+						xmlhttp.onreadystatechange = function () {
+							if (this.readyState == 4 && this.status == 200) {
+								document.getElementById("dircon").innerHTML = this.responseText;
+							}
+						};
+						xmlhttp.open("GET", "getdircontents.php?q=" + path + "&orderpreference=" + orderpreference, true);
+						xmlhttp.send();}
+			
 		</script>
 	</head>
-
 	<body id="main">
+		<ul id="dircon" class="w3-ul w3-card-4" style="width:50%">
+		</ul>
 	</body>
 
 </html>
