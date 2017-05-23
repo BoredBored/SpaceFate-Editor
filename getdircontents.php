@@ -12,14 +12,14 @@ if ($path != "") {
 		if ($DirContentsArray[$x] == ".") {
 		}
 		elseif ($DirContentsArray[$x] == "..") {
-			echo "${$dircontents}<li><a href=\"http://admin.angeletakis/${path}/..\">Parent Directory</a></li>";
+			echo "${$dircontents}<li><a href=\"http://admin.angeletakis/${path}..\">Parent Directory</a></li>";
 		}
 		else {
-			if (is_dir(DirContentsArray[$x]) == true) {
-				$dircontents = "${$dircontents}<li><div class=\"file\"><p>${DirContentsArray[$x]}</p></div></li>";
+			if (is_dir("/var/www/admin${DirContentsArray[$x]}") == true) {
+				$dircontents = "${$dircontents}<li><div class=\"dir\" onclick=\"getdircon(${DirContentsArray[$x]}, 1)\"><p>${DirContentsArray[$x]}</p></div></li>";
 			}
 			else {
-				$dircontents = "${$dircontents}<li><div class=\"dir\" onclick=\"getdircon(${DirContentsArray[$x]}, 1)\"><p>${DirContentsArray[$x]}</p></div></li>";
+				$dircontents = "${$dircontents}<li><div class=\"file\"><p>/${DirContentsArray[$x]}</p></div></li>";
 			}
 		}
 	}
