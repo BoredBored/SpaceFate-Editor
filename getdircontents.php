@@ -16,10 +16,10 @@ if ($path != "") {
 		}
 		else {
 			if (is_dir("/var/www/admin${DirContentsArray[$x]}") == true) {
-				$dircontents = "${$dircontents}<li><div class=\"dir\" onclick=\"getdircon(${DirContentsArray[$x]}, 1)\"><p>${DirContentsArray[$x]}</p></div></li>";
+				$dircontents = "${$dircontents}<li><div class=\"dir\" onclick=\"getdircon(/${DirContentsArray[$x]}, 1)\"><p>${DirContentsArray[$x]}</p></div></li>";
 			}
 			else {
-				$dircontents = "${$dircontents}<li><div class=\"file\"><p>/${DirContentsArray[$x]}</p></div></li>";
+				$dircontents = "${$dircontents}<li><div class=\"file\"><p>${DirContentsArray[$x]}</p></div></li>";
 			}
 		}
 	}
