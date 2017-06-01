@@ -3,12 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<div class="w3-container">
-			<h2>Navigation Bar with Dropdown</h2>
-			<p>Click on the Dropdown link to open the dropdown menu.</p>
-
 				<div class="w3-bar w3-light-grey">
-					<a href="#" class="w3-bar-item w3-button">Home</a>
+					<a href="http://angeletakis.net" class="w3-bar-item w3-button">Home</a>
 					<a href="#" class="w3-bar-item w3-button">Link 1</a>
 					<div class="w3-dropdown-click">
 						<button class="w3-button" onclick="myFunction()">
@@ -23,18 +21,19 @@
 				</div>
 		</div>
 
-<script>
-function myFunction() {
-    var x = document.getElementById("dropd");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-</script>
+		<script>
+			function myFunction() {
+				var x = document.getElementById("dropd");
+				if (x.className.indexOf("w3-show") == -1) {
+					x.className += " w3-show";
+				} else { 
+					x.className = x.className.replace(" w3-show", "");
+				}
+			}
+
+		</script>
 	</head>
 	<body>
-		
+		<!-- Bla -->
 	</body>
 </html>
