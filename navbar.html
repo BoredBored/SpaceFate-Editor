@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<div class="w3-container">
-				<div class="w3-bar w3-light-grey">
-					<a href="http://admin.angeletakis.net" class="w3-bar-item w3-button">Home</a>
-					<a href="#" class="w3-bar-item w3-button">Link 1</a>
-					<div class="w3-dropdown-click">
-						<button class="w3-button" onclick="dropd()">
-							Options <i class="fa fa-caret-down"></i>
-      						</button>
-						<div id="dropd" class="w3-dropdown-content w3-bar-block w3-card-2">
-							<a href="#" class="w3-bar-item w3-button">Link 1</a>
-							<a href="#" class="w3-bar-item w3-button">Link 2</a>
-							<a href="#" class="w3-bar-item w3-button">Link 3</a>
-						</div>
-					</div>
-				</div>
-		</div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {margin: .5;}
 
-		<script>
-			function dropd() {
-				var x = document.getElementById("dropd");
-				if (x.className.indexOf("w3-show") == -1) {
-					x.className += " w3-show";
-				} else { 
-					x.className = x.className.replace(" w3-show", "");
-				}
-			}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
 
-		</script>
-	</head>
-	<body>
-		<!-- Bla -->
-	</body>
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+ul.topnav {
+    -webkit-box-shadow: 9px 8px 6px -6px #999;
+    -moz-box-shadow: 9px 8px 6px -6px #999;
+    box-shadow: 9px 8px 6px -6px #999;
+}
+</style>
+</head>
+<body>
+
+<ul class="topnav">
+  <li><a class="active" href="/home">Home</a></li>
+  <li><a href="/news">News</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li class="right"><a href="/about">About</a></li>
+</ul>
+
+<div style="padding:0 16px;">
+  <h2>Responsive Topnav Example</h2>
+  <p>This example use media queries to stack the topnav vertically when the screen size is 600px or less.</p>
+  <p>You will learn more about media queries and responsive web design later in our CSS Tutorial.</p>
+  <h4>Resize the browser window to see the effect.</h4>
+</div>
+
+</body>
 </html>
