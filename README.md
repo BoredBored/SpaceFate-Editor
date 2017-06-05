@@ -1,1 +1,1 @@
-# webcore-alexiosa
+# WAM Manager
