@@ -1,1 +1,1 @@
-# WAM CMS
+# WAM Manager
