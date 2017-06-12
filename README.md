@@ -3,6 +3,7 @@ The SF is a browser GUI for managing your server. It aims to replacate and repla
 
 # Demo
 Although the IDE is basicly the only thing created so far, you can try it out here: [74.208.160.79](http://74.208.160.79/)
+Alough I will warn you, it doesn't look nice.
 
 ## To Do
  - Impement an enable javascript message
