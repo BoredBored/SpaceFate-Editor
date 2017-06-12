@@ -14,7 +14,7 @@ The SF is a browser GUI for managing your server. It aims to replacate and repla
    - Create Drag drop for basic shapes
    - Make shapes resizable
  - Start on the file system viewer
-   - Make delete, create and move file buttons
+   - Make delete, create and move buttons
    - Create a image preview
  - Implement a cpu and ram usage preview for
    - DigitalOcean servers
