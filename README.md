@@ -6,5 +6,6 @@ The SF is a browser GUI for managing your server. It aims to replacate services 
 ## To Do
  - Impement an enable javascript message
  - Implement a terminal via [termlib.js](http://www.masswerk.at/termlib/)
- - Give the ability to switch between the [Ace](https://ace.c9.io/) code editor and the [CodeMirror](https://codemirror.net/) code editor
+ - Implement the [Ace](https://ace.c9.io/) code editor
+ - Give the ability to switch between the Ace code editor and the [CodeMirror](https://codemirror.net/) code editor
 
