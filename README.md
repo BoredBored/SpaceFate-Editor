@@ -9,6 +9,7 @@ The SF is a browser GUI for managing your server. It aims to replacate and repla
  - Implement the [Ace](https://ace.c9.io/) code editor
  - Give the ability to switch between the Ace code editor and the [CodeMirror](https://codemirror.net/) code editor
  - Implement a html preview for the CodeMirror editor
+ - Make the Top and Bottem buttons in the in the code IDE actual circles
  - Start the visual editor
    - Create Drag drop for basic shapes
    - Make shapes resizable
