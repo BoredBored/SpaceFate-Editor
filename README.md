@@ -1,4 +1,4 @@
-# SpaceFate
+# SpaceFate Editor
 The SF is a browser GUI for managing your server. It aims to replacate and replace services like [Squarespace](https://www.squarespace.com/)'s graphical web page editor but for free.
 
 
