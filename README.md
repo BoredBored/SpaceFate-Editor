@@ -2,7 +2,7 @@
 The SF is a browser GUI for managing your server. It aims to replacate and replace services like [Squarespace](https://www.squarespace.com/)'s graphical web page editor but for free.
 
 ## Demo
-Although the IDE is basicly the only thing created so far, you can try it out here: [74.208.160.79](http://74.208.160.79/)
+Although the IDE is basicly the only thing created so far, you can try it out here: [74.208.160.79](http://74.208.160.79/).
 Alough I will warn you, it doesn't look nice.
 
 ## To Do
