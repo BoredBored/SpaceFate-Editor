@@ -1,5 +1,5 @@
 # SpaceFate
-The SF is a browser GUI for managing your server. It aims to replacate services like [Squarespace](https://www.squarespace.com/)'s graphical web page editor but for free.
+The SF is a browser GUI for managing your server. It aims to replacate and replace services like [Squarespace](https://www.squarespace.com/)'s graphical web page editor but for free.
 
 
 
@@ -12,3 +12,10 @@ The SF is a browser GUI for managing your server. It aims to replacate services 
  - Start the visual editor
    - Create Drag drop for basic shapes
    - Make shapes resizable
+ - Start on the file system viewer
+   - Make delete, create and move file buttons
+   - Create a image preview
+ - Implement a cpu and ram usage preview for
+   - DigitalOcean servers
+   - 1and1 cloud servers
+   - GoDaddy servers
