@@ -11,9 +11,10 @@ The demo isn't ready yet
 -->
 
 ## To Do
+ - Make a save to server function
  - Impement an enable javascript message
  - Implement a html preview for the CodeMirror editor
- - Implement a terminal via [termlib.js](http://www.masswerk.at/termlib/)
+ - Implement a terminal via [GateOne](https://github.com/liftoff/GateOne)
  - Implement the [Ace](https://ace.c9.io/) code editor
  - Give the ability to switch between the Ace code editor and the [CodeMirror](https://codemirror.net/) code editor
  - Make the Top and Bottem buttons in the in the code IDE actual circles
