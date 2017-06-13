@@ -9,6 +9,7 @@
 		<script src='http://codemirror.net/mode/xml/xml.js'></script>
 		<script src='http://codemirror.net/mode/javascript/javascript.js'></script>
 		<script src='http://codemirror.net/mode/css/css.js'></script>
+		<script src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
 		<script src='http://codemirror.net/mode/htmlmixed/htmlmixed.js'></script>
 		<link rel='stylesheet' href='http://codemirror.net/lib/codemirror.css'>
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -74,7 +75,7 @@
 	</body>
 <html></textarea>
 				<!-- End textarea -->
-				<div id="goToButton"></div>
+				<button class="w3-button w3-red" id="goToButton"></button>
 			</div>
 		</div>
 		<script>
@@ -85,7 +86,8 @@
 				tabMode: 'indent',
 				lineNumbers: true,
 				lineWrapping: true,
-				autoCloseTags: true
+				autoCloseTags: true,
+				matchBrackets: true
 			});
 			// Live preview
 			editor.on("change", function() {
@@ -179,18 +181,34 @@
 					x.style.display = 'none';
 				}
 			}
-				// When the user scrolls down passed [screenHeight]px show the button
-			window.onscroll = function() {
-				scrollFunction()
-			};
+			
+			document.getElementById("SideBar").onclick = goToButton;
+			
+			var goToButton = document.getElementById("goToButton");
+			var goToBtnState = false; // false == bottem
+			function goToButton() {
+				if (goToBtnState == false) {
+					goToTopFunc();
+					goToBtnState = true;
+				} else {
+					goToBottemFunc();
+					goToBtnState = false;
+				}
+			}
+			
+			// When the user scrolls down passed [screenHeight]px show the button
+			window.onscroll = function() { scrollFunction() };
 			function scrollFunction() {
-				var goToButton = document.getElementById("goToButton");
 				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-					goToButton.innerHTML = "<button class=\"w3-button w3-circle w3-red\"onclick=\"goToTopFunc()\" title=\"Go to the Top\">Top</button>";
+					goToButton.innerHTML = "&#9650;";
+					goToButton.title = "Go to the Top";
 					goToButton.style.display = "block";
+					goToBtnState = true;
 				}
 				else if (document.body.scrollTop < 20 || document.documentElement.scrollTop < 20) {
-					goToButton.innerHTML = "<button class=\"w3-button w3-circle w3-red\"onclick=\"goToBottemFunc()\" title=\"Go to the Bottem\">Bottem</button>";
+					goToButton.innerHTML = "&#9660;";
+					goToButton.title = "Go to the bottem";
+					goToBtnState = false;				
 				}
 				else {
 					document.getElementById("goToButton").style.display = "none";
