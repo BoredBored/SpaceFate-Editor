@@ -32,7 +32,7 @@
 	<!-- Top nav -->
 	<div class="w3-container">
 		<div class="w3-bar w3-border w3-card-4 w3-light-grey w3-margin-bottom">
-			<button class="w3-bar-item w3-button" id="SideBar">&#9776;</button>
+			<button class="w3-bar-item w3-button" onclick="SideBar()" id="SideBar">&#9776;</button>
 			<a href="#" class="w3-bar-item w3-button">Home</a>
 			<a href="#" class="w3-bar-item w3-button w3-right">Link</a>
 		</div>
@@ -50,15 +50,16 @@
 	<!-- Code editor -->
 	<div id="main">
 		<div class="w3-container">
-			<div class="w3-bar w3-margin-bottom">
+			<div class="w3-bar w3-margin-bottom w3-green">
 				<label class="w3-bar-item w3-button">
 					<input type="file" onchange="loadfile(this)">
 					Upload
 				</label>
-				<button class="w3-bar-item w3-button w3-green">Download</button>
+				<a class="w3-bar-item w3-button" href="#download" onclick='saveTextAsFile()'>Download</a>
+				<input id="fileName" class="w3-bar-item w3-input" placeholder="Save file as ...">
 			</div>
-				<div class="w3-container">
-					<textarea id="code" name="code"><!DOCTYPE html>
+				
+				<textarea id="code" name="code"><!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
@@ -70,12 +71,14 @@
 		
 	</body>
 <html></textarea>
-				</div>
+
+<!--
 				<div class="w3-container hide">
 					<iframe id="preview"></iframe>
 				</div>
-				<div class="w3-container">
-
+-->
+		</div>
+	</div>
         <script>
             var delay;
 
@@ -94,33 +97,35 @@
                 delay = setTimeout(updatePreview, 300);
             });
 
-            function updatePreview() {
-                localStorage.code = editor.getValue();
-            }
             setTimeout(updatePreview, 300);
 
             function saveTextAsFile() {
-                var textToWrite = document.getElementById("code").value;
-                var textFileAsBlob = new Blob([textToWrite], {
-                    type: 'text/html'
-                });
-                var fileNameToSaveAs = "";
-                var downloadLink = document.createElement("a");
-                downloadLink.innerHTML = "Download File";
-                if (window.webkitURL != null) {
-                    // Chrome allows the link to be clicked
-                    // without actually adding it to the DOM.
-                    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-                } else {
-                    // Firefox requires the link to be added to the DOM
-                    // before it can be clicked.
-                    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-                    downloadLink.onclick = destroyClickedElement;
-                    downloadLink.style.display = "none";
-                    document.body.appendChild(downloadLink);
-                }
+		var fileName = document.getElementById("fileName").value;
+			if (fileName !== ""){
+                		var textToWrite = document.getElementById("code").value;
+                		var textFileAsBlob = new Blob([textToWrite], {
+                    			type: 'text/html'
+                		});
+                		var downloadLink = document.createElement("a");
+				downloadLink.download = fileName;
+                		downloadLink.innerHTML = "Download File";
+                		if (window.webkitURL != null) {
+                    			// Chrome allows the link to be clicked
+                    			// without actually adding it to the DOM.
+                    			downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+                		} else {
+                    			// Firefox requires the link to be added to the DOM
+                    			// before it can be clicked.
+                    			downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                    			downloadLink.onclick = destroyClickedElement;
+                    			downloadLink.style.display = "none";
+                    			document.body.appendChild(downloadLink);
+                		}
 
-                downloadLink.click();
+                		downloadLink.click();
+			 } else {
+				alert("Please type a file name.")
+			}
             }
 
             function destroyClickedElement(event) {
@@ -133,6 +138,7 @@
                     editor.setValue(e.target.result);
                 }
                 reader.readAsText(input.files[0]);
+		document.getElementById("fileName").value = input.files[0].name
             }
 
             var input = document.getElementById("select");
@@ -147,26 +153,34 @@
                 input.value = choice;
                 editor.setOption("theme", choice);
             }
-	document.getElementById("SideBar").onclick = function() {w3_open()};
+	document.getElementById("sideBarBtn").onclick = function() {w3_open()};
 
-	function w3_open() {
+	var sideBarBtn = document.getElementById("sideBarBtn");
+
+	var sideBarBtnState = false; // false == closed
+	function SideBar(){
+		if (sideBarBtnState == false) {
+			sideBarOpen();
+			sideBarBtn.innerHTML = "&times;"
+			sideBarBtnState = true;
+		} else {
+			sideBarClose();
+                        sideBarBtn.innerHTML = "&#9776;"
+                        sideBarBtnState = false;
+		}
+	}
+
+	function sideBarOpen() {
 		document.getElementById("main").style.marginLeft = "16%";
   		document.getElementById("Sidebar").style.width = "15%";
   		document.getElementById("Sidebar").style.display = "block";
 	}
-	function w3_close() {
+	function sideBarClose() {
   		document.getElementById("main").style.marginLeft = "0%";
   		document.getElementById("Sidebar").style.display = "none";
  
 	}
-	function PreToggle() {
-		var x = document.getElementById('preview');
-		if (x.style.display === 'none') {
-			x.style.display = 'block';
-		} else {
-			x.style.display = 'none';
-		}
-	}
         </script>
     </body>
+
 </html>
