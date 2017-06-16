@@ -1,65 +1,77 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    
-    <head>
-        <meta charset="utf-8">
-        <title>Spacefate Editor</title>
-        <script src='http://codemirror.net/lib/codemirror.js'></script>
-        <script src='http://codemirror.net/mode/xml/xml.js'></script>
-        <script src='http://codemirror.net/mode/javascript/javascript.js'></script>
-        <script src='http://codemirror.net/mode/css/css.js'></script>
-        <script src='http://codemirror.net/mode/htmlmixed/htmlmixed.js'></script>
-        <link rel='stylesheet' href='http://codemirror.net/lib/codemirror.css'>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <style type='text/css'>
-            .CodeMirror {
-            	height: auto;
-		width: auto;
-            }
-            iframe {
-                border: 1px solid black;
-		height: auto;
-		width: auto;
-            }
-          .hide {
-            display: none;  
-	}
-	input[type="file"] { display: none; }
-        </style>
-    </head>
-    
-    <body>
-	<!-- Top nav -->
-	<div class="w3-container">
-		<div class="w3-bar w3-border w3-card-4 w3-light-grey w3-margin-bottom">
-			<button class="w3-bar-item w3-button" onclick="SideBar()" id="SideBar">&#9776;</button>
-			<a href="#" class="w3-bar-item w3-button">Home</a>
-			<a href="#" class="w3-bar-item w3-button w3-right">Link</a>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Spacefate Editor</title>
+		<script type="application/javascript" src='https://codemirror.net/lib/codemirror.js'></script>
+		<script type="application/javascript" src='https://codemirror.net/mode/xml/xml.js'></script>
+		<script type="application/javascript" src='https://codemirror.net/mode/javascript/javascript.js'></script>
+		<script type="application/javascript" src='https://codemirror.net/mode/css/css.js'></script>
+		<script type="application/javascript" src='https://codemirror.net/mode/htmlmixed/htmlmixed.js'></script>
+		<link   rel='stylesheet'              href='https://codemirror.net/lib/codemirror.css'>
+		<link   rel="stylesheet"              href="https://www.w3schools.com/w3css/4/w3.css">
+		<script type="application/javascript" rel='https://codemirror.net/addon/edit/matchbrackets.js'></script>
+		<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<style  type='text/css'>
+			.CodeMirror {
+				height: auto;
+				width: auto;
+			}
+			iframe {
+				border: 1px solid black;
+				height: auto;
+				width: auto;
+			}
+			.hide {
+				display: none;
+			}
+			input[type="file"] {
+				display: none;
+			}
+			#goToBtn {
+				display: none;
+				position: fixed;
+				bottom: 20px;
+				right: 30px;
+				z-index: 99;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<!-- Top nav -->
+		<div class="w3-container">
+			<div class="w3-bar w3-border w3-card-4 w3-light-grey w3-margin-bottom">
+				<button class="w3-bar-item w3-button" onclick="SideBar()" id="sideBarBtn">&#9776;</button>
+				<a href="#" class="w3-bar-item w3-button">Home</a> 
+				<a href="#" class="w3-bar-item w3-button w3-right">Link</a>
+			</div>
 		</div>
-	</div>
-	<!-- Sidebar -->
-	<div class="w3-container">
-		<div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left" style="display:none" id="Sidebar">
-  			<button class="w3-bar-item w3-button w3-large w3-right-align" onclick="w3_close()" style="font-weight: bold;">&times;</button>
-			<a href="#" class="w3-bar-item w3-button w3-hover-none w3-padding-16 w3-large"><u>Mode</u></a>
+
+		<!-- Sidebar -->
+		<div class="w3-container">
+			<div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-left" style="display:none;" id="Sidebar">
+				<a href="#" class="w3-bar-item w3-padding-16 w3-large" style="cursor:default!important;"><u>Mode</u></a>
 				<a href="#" class="w3-bar-item w3-button w3-right-align">Visual Editor</a>
 				<a href="#" class="w3-bar-item w3-button w3-right-align">Terminal</a>
-                                <a href="#" class="w3-bar-item w3-button w3-right-align">Server Info Page</a>
-		</div>
-	</div>
-	<!-- Code editor -->
-	<div id="main">
-		<div class="w3-container">
-			<div class="w3-bar w3-margin-bottom w3-green">
-				<label class="w3-bar-item w3-button">
-					<input type="file" onchange="loadfile(this)">
-					Upload
-				</label>
-				<a class="w3-bar-item w3-button" href="#download" onclick='saveTextAsFile()'>Download</a>
-				<input id="fileName" class="w3-bar-item w3-input" placeholder="Save file as ...">
+				<a href="#" class="w3-bar-item w3-button w3-right-align">Server Info Page</a>
 			</div>
-				
-				<textarea id="code" name="code"><!DOCTYPE html>
+		</div>
+
+		<div id="main">
+			<div class="w3-container">
+				<div class="w3-bar w3-margin-bottom w3-green">
+					<label class="w3-bar-item w3-button">
+						<input type="file" onchange="loadfile(this)">
+						Upload
+					</label>
+					<a class="w3-bar-item w3-button" href="#download" onclick='saveTextAsFile()'>Download</a>
+					<input id="fileName" class="w3-bar-item w3-input" placeholder="Save file as ...">
+				</div>
+				<!-- _______________________________________________Code_Editor____________________________________________ -->
+					<textarea id="code" name="code"><!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
@@ -71,116 +83,127 @@
 		
 	</body>
 <html></textarea>
+				<!-- ___________________________________________________________________________________________________ -->
 
-<!--
+			<!--
 				<div class="w3-container hide">
 					<iframe id="preview"></iframe>
 				</div>
--->
+			-->
+				<button class="w3-button w3-red" onclick="goToBtnFunc()" id="goToBtn" title="Go to top">Top</button>
+			</div>
 		</div>
-	</div>
-        <script>
-            var delay;
-
-            // Initialize CodeMirror editor
-            var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-                mode: 'text/html',
-                tabMode: 'indent',
-                lineNumbers: true,
-                lineWrapping: true,
-                autoCloseTags: true
-            });
-
-            // Live preview
-            editor.on("change", function() {
-                clearTimeout(delay);
-                delay = setTimeout(updatePreview, 300);
-            });
-
-            setTimeout(updatePreview, 300);
-
-            function saveTextAsFile() {
-		var fileName = document.getElementById("fileName").value;
-			if (fileName !== ""){
-                		var textToWrite = document.getElementById("code").value;
-                		var textFileAsBlob = new Blob([textToWrite], {
-                    			type: 'text/html'
-                		});
-                		var downloadLink = document.createElement("a");
-				downloadLink.download = fileName;
-                		downloadLink.innerHTML = "Download File";
-                		if (window.webkitURL != null) {
-                    			// Chrome allows the link to be clicked
-                    			// without actually adding it to the DOM.
-                    			downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-                		} else {
-                    			// Firefox requires the link to be added to the DOM
-                    			// before it can be clicked.
-                    			downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-                    			downloadLink.onclick = destroyClickedElement;
-                    			downloadLink.style.display = "none";
-                    			document.body.appendChild(downloadLink);
-                		}
-
-                		downloadLink.click();
-			 } else {
-				alert("Please type a file name.")
+		<script>
+			var delay;
+			// Initialize CodeMirror editor
+			var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+				mode: 'text/html',
+				tabMode: 'indent',
+				lineNumbers: true,
+				lineWrapping: true,
+				autoCloseTags: true,
+				matchBrackets: true
+			});
+			// Live preview
+/*			editor.on("change", function () {
+				clearTimeout(delay);
+				delay = setTimeout(updatePreview, 300);
+			});
+			setTimeout(updatePreview, 300);
+*/
+			function saveTextAsFile() {
+				var fileName = document.getElementById("fileName").value;
+				if (fileName !== "") {
+					var textToWrite = document.getElementById("code").value;
+					var textFileAsBlob = new Blob([textToWrite], {
+						type: 'text/html'
+					});
+					var downloadLink = document.createElement("a");
+					downloadLink.download = fileName;
+					downloadLink.innerHTML = "Download File";
+					if (window.webkitURL != null) {
+						// Chrome allows the link to be clicked
+						// without actually adding it to the DOM.
+						downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+					}
+					else {
+						// Firefox requires the link to be added to the DOM
+						// before it can be clicked.
+						downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+						downloadLink.onclick = destroyClickedElement;
+						downloadLink.style.display = "none";
+						document.body.appendChild(downloadLink);
+					}
+					downloadLink.click();
+				} 
+				else {
+					alert("Please type a file name.")
+				}
 			}
-            }
 
-            function destroyClickedElement(event) {
-                document.body.removeChild(event.target);
-            }
+			function loadfile(input) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					editor.setValue(e.target.result);
+				}
+				reader.readAsText(input.files[0]);
+				document.getElementById("fileName").value = input.files[0].name
+			}
+			var sideBarBtn = document.getElementById("sideBarBtn");
+			var sideBarBtnState = false; // false == open
+			function SideBar() {
+				// if open close
+				if (sideBarBtnState == true) {
+					sideBarClose();
+					sideBarBtnState = false;
+				}
+				// if closed open
+				else {
+					sideBarOpen();
+				sideBarBtnState = true;
+				}
+			}
 
-            function loadfile(input) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    editor.setValue(e.target.result);
-                }
-                reader.readAsText(input.files[0]);
-		document.getElementById("fileName").value = input.files[0].name
-            }
+			function sideBarOpen() {
+				document.getElementById("main").style.marginLeft = "15.9%";
+				document.getElementById("Sidebar").style.width = "15%";
+				document.getElementById("Sidebar").style.display = "block";
+			}
 
-            var input = document.getElementById("select");
+			function sideBarClose() {
+					document.getElementById("main").style.marginLeft = "0%";
+					document.getElementById("Sidebar").style.display = "none";
+			}
+			window.onscroll = function () {scrollFunc()};
 
-            function selectTheme() {
-                var theme = input.options[input.selectedIndex].innerHTML;
-                editor.setOption("theme", theme);
-            }
+			var goToBtn = document.getElementById("goToBtn");
+			var goToBtnState = false;
 
-            var choice = document.location.search && decodeURIComponent(document.location.search.slice(1));
-            if (choice) {
-                input.value = choice;
-                editor.setOption("theme", choice);
-            }
-	document.getElementById("sideBarBtn").onclick = function() {w3_open()};
-
-	var sideBarBtn = document.getElementById("sideBarBtn");
-
-	var sideBarBtnState = false; // false == closed
-	function SideBar(){
-		if (sideBarBtnState == false) {
-			sideBarOpen();
-			sideBarBtn.innerHTML = "&times;"
-			sideBarBtnState = true;
-		} else {
-			sideBarClose();
-                        sideBarBtn.innerHTML = "&#9776;"
-                        sideBarBtnState = false;
-		}
-	}
-
-	function sideBarOpen() {
-		document.getElementById("main").style.marginLeft = "16%";
-  		document.getElementById("Sidebar").style.width = "15%";
-  		document.getElementById("Sidebar").style.display = "block";
-	}
-	function sideBarClose() {
-  		document.getElementById("main").style.marginLeft = "0%";
-  		document.getElementById("Sidebar").style.display = "none";
- 
-	}
-        </script>
-    </body>
-
+			// When the user scrolls down 20px from the top of the document, show the button
+			function scrollFunc() {
+					if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+						goToBtn.style.display = "block";
+						goToBtn.innerHTML = "&#9650;";
+						goToBtnState = false;
+					}
+					else if (document.body.scrollTop < 20 || document.documentElement.scrollTop < 20) {
+						goToBtn.innerHTML = "&#9660;";
+						goToBtnState = true;
+					}
+					else {
+						document.getElementById("goToBtn").style.display = "none";
+					}
+			}
+			// When the user clicks on the button, scroll to the top of the document
+			function goToBtnFunc() {
+				if (goToBtnState === false) {
+					document.body.scrollTop = 0;
+					document.documentElement.scrollTop = 0;
+				} else {
+					document.body.scrollTop = $("body").height();
+					document.documentElement.scrollTop = $("body").height();
+				}
+			}
+		</script>
+	</body>
 </html>
