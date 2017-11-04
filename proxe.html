@@ -1,24 +1,63 @@
 <html>
-  <head>
-    </head>
-  <body>
-    <iframe style="border-style: none;width: 100%; height: 120px;" name="dynamicframe" id="dynamicframe" src="javascript:'-'"></iframe>
-    <script>
-function showHint(str) {
-    if (str.length == 0) { 
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET", "gethint.php?q=" + str, true);
-        xmlhttp.send();
-    }
+   <head>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   </head>
+   <body>
+      <form class="w3-container">
+         <input class="w3-input" id="url-input" placeholder="https://www.example.com" type="url" maxlength="200">
+      </form>
+      <script>
+         var myTextbox = document.getElementById('url-input');
+         myTextbox.addEventListener('keypress', getPage, false);
+         
+function getHtml(){
+  document.getElementById("output-box").innerHTML = "[enter]";
+
+  var urlInput = document.getElementById("url-input");
+  if (!urlInput.value.length == 0){
+    
+if(true == true){document.getElementById("output-box").innerHTML += "valid url";}
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var d = parent.dynamicframe.document; 
+          d.open();
+          d.write(this.responseText);
+          d.close();
+        }
+      };
+      xmlhttp.open("GET", "getHtml.php?url=" + str, true);
+      xmlhttp.send();
+
+  }
 }
-</script>
-    </body>
-  </html>
+
+function validURL(str) {
+  var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
+    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
+    '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
+    '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
+    '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
+    '(\#[-a-z\d_]*)?$','i'); // fragment locater
+  if(!pattern.test(str)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+         function getPage(evt) {
+           var charCode = event.charCode || event.keyCode;
+             if (charCode == 13) {
+               evt.preventDefault();
+               getHtml();
+             }
+           }
+         
+         
+      </script>
+<iframe name="dynamicframe" id="dynamicframe" src="javascript:'';"></iframe>
+
+      <div id="output-box"></div>
+   </body>
+</html>
