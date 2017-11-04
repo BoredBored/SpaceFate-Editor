@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
    <head>
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -10,54 +11,61 @@
          var myTextbox = document.getElementById('url-input');
          myTextbox.addEventListener('keypress', getPage, false);
          
-function getHtml(){
-  document.getElementById("output-box").innerHTML = "[enter]";
-
-  var urlInput = document.getElementById("url-input");
-  if (!urlInput.value.length == 0){
-    
-if(true == true){document.getElementById("output-box").innerHTML += "valid url";}
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var d = parent.dynamicframe.document; 
-          d.open();
-          d.write(this.responseText);
-          d.close();
-        }
-      };
-      xmlhttp.open("GET", "getHtml.php?url=" + str, true);
-      xmlhttp.send();
-
-  }
-}
-
-function validURL(str) {
-  var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
-    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
-    '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
-    '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
-    '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
-    '(\#[-a-z\d_]*)?$','i'); // fragment locater
-  if(!pattern.test(str)) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
          function getPage(evt) {
-           var charCode = event.charCode || event.keyCode;
+             var charCode = event.charCode || event.keyCode;
              if (charCode == 13) {
-               evt.preventDefault();
-               getHtml();
+                 evt.preventDefault();
+                 getHtml();
              }
-           }
+         }
          
+         function getHtml() {
+             var output = document.getElementById("output-box");
+             output.innerHTML += " [enter]";
+             var urlInput = document.getElementById("url-input");
+             var urlVal = urlInput.value;
+             if (!urlVal.length == 0) {
+         		output.innerHTML += " [url length not 0]"
+                 if (validURL(urlVal)) 
+                 {
+                     output.innerHTML += " [valid url]";
+                 } 
+                 
+                 var xmlhttp = new XMLHttpRequest();
+                 output.innerHTML += " [xml]";
+                 xmlhttp.onreadystatechange = function() {
+                     if (this.readyState == 4 && this.status == 200) {
+                         var d = parent.dynamicframe.document;
+                         d.open();
+                         d.write(this.responseText);
+                         d.close();
+                     }
+                 };
+                 xmlhttp.open("GET", "getHtml.php?url=" + str, true);
+                 xmlhttp.send();
+             }
+         }
+         function checkURI(str)
+         {
+         	var proto = str.substr(0, 3);
+            if (proto == "http")
+            {
+            	var proto2 = str.substr(4, 6);
+            	if(proto2 == "://" || proto2 + str.charAt(7) == "s://")
+                {
+                	return true;
+                } else {return false;}
+            }
+            else {return false;}
+         }
+         
+         function validURL(s) {
+             var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+             return regexp.test(s);
+         }
          
       </script>
-<iframe name="dynamicframe" id="dynamicframe" src="javascript:'';"></iframe>
-
+      <iframe name="dynamicframe" id="dynamicframe" src="javascript:'';"></iframe>
       <div id="output-box"></div>
    </body>
 </html>
