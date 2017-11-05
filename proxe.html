@@ -24,13 +24,20 @@
              output.innerHTML += " [enter]";
              var urlInput = document.getElementById("url-input");
              var urlVal = urlInput.value;
-            urlVal = urlVal.trim();
+            urlVal = trimWhite(urlVal);
+            output.innerHTML += " ["+urlVal +"]";
              if (!urlVal.length == 0) {
-         		output.innerHTML += " [url length not 0]"
+         		output.innerHTML += " [url length not 0]";
+                    if (!URIcheck(urlVal)){
+                 		urlVal = "https://"+urlVal.replace(/^(\\)/,"").replace(/^(\:)/,"").replace("http://", "");
+                    }
+                 	output.innerHTML += " [no http - "+ urlVal +"]";
                  if (validURL(urlVal)) 
                  {
                      output.innerHTML += " [valid url]";
-                 } 
+                 } else {
+                 	alert("please type in a valid url");
+                 }
                  
                  var xmlhttp = new XMLHttpRequest();
                  output.innerHTML += " [xml]";
@@ -42,24 +49,32 @@
                          d.close();
                      }
                  };
-                 xmlhttp.open("GET", "getHtml.php?url=" + str, true);
+                 xmlhttp.open("GET", "getHtml.php?url=" + encodeURI(urlVal), true);
                  xmlhttp.send();
              }
          }
-         function checkURI(str)
+         
+         function URIcheck(str)
          {
          	var proto = str.substr(0, 3);
             if (proto == "http")
             {
             	var proto2 = str.substr(4, 6);
-            	if(proto2 == "://" || proto2 + str.charAt(7) == "s://")
+            	if(proto2 == "://")
+                {
+                    return true;
+                } else if (proto2 + str.charAt(7) == "s://")
                 {
                 	return true;
-                } else {return false;}
+                }
+                else {return false;}
             }
             else {return false;}
          }
          
+         function trimWhite(s){
+         	return s.replace(/^\s+|\s+$/g, '');
+         }
          function validURL(s) {
              var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
              return regexp.test(s);
