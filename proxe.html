@@ -26,10 +26,11 @@
              var urlVal = urlInput.value;
             urlVal = trimWhite(urlVal);
             output.innerHTML += " ["+urlVal +"]";
+            output.innerHTML += " ["+urlVal.length +"]";
              if (!urlVal.length == 0) {
          		output.innerHTML += " [url length not 0]";
                     if (!URIcheck(urlVal)){
-                 		urlVal = "https://"+urlVal.replace(/^(\\)/,"").replace(/^(\:)/,"").replace("http://", "");
+                 		urlVal = "https://"+urlVal.replace("://", "").replace("http://", "");
                     }
                  	output.innerHTML += " [no http - "+ urlVal +"]";
                  if (validURL(urlVal)) 
@@ -49,7 +50,9 @@
                          d.close();
                      }
                  };
-                 xmlhttp.open("GET", "getHtml.php?url=" + encodeURI(urlVal), true);
+                 urlVal = encodeURIComponent(urlVal);
+                 output.innerHTML += " ["+urlVal+"]";
+                 xmlhttp.open("GET", "getHtml.php?url=" + urlVal, true);
                  xmlhttp.send();
              }
          }
