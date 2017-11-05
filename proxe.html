@@ -21,16 +21,17 @@
          
          function getHtml() {
              var output = document.getElementById("output-box");
+             output.innerHTML = "";
              output.innerHTML += " [enter]";
              var urlInput = document.getElementById("url-input");
              var urlVal = urlInput.value;
             urlVal = trimWhite(urlVal);
-            output.innerHTML += " ["+urlVal +"]";
-            output.innerHTML += " ["+urlVal.length +"]";
-             if (!urlVal.length == 0) {
+            output.innerHTML += " [whitespace striped -> ("+urlVal +")]";
+            output.innerHTML += " [length - "+urlVal.length +"]";
+             if (urlVal.length != 0) {
          		output.innerHTML += " [url length not 0]";
                     if (!URIcheck(urlVal)){
-                 		urlVal = "https://"+urlVal.replace("://", "").replace("http://", "");
+                 		urlVal = "https://"+urlVal.replace("http://", "");
                     }
                  	output.innerHTML += " [no http - "+ urlVal +"]";
                  if (validURL(urlVal)) 
