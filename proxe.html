@@ -24,6 +24,7 @@
              output.innerHTML += " [enter]";
              var urlInput = document.getElementById("url-input");
              var urlVal = urlInput.value;
+            urlVal = urlVal.trim();
              if (!urlVal.length == 0) {
          		output.innerHTML += " [url length not 0]"
                  if (validURL(urlVal)) 
